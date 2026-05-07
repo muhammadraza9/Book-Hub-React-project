@@ -124,10 +124,15 @@ function AboutUs() {
 
       <h4 className="mb-3">
         Community Books{' '}
-        <span className="badge bg-success" style={{ fontSize: '0.75rem' }}>{books.length}</span>
+        {currentUser && <span className="badge bg-success" style={{ fontSize: '0.75rem' }}>{books.length}</span>}
       </h4>
 
-      {books.length === 0 ? (
+      {!currentUser ? (
+        <div className="text-center py-5 text-muted">
+          <p style={{ fontSize: '3rem' }}>🔒</p>
+          <p>Please <Link to="/login" className="text-success fw-bold">login</Link> to view the book collection.</p>
+        </div>
+      ) : books.length === 0 ? (
         <div className="text-center py-5 text-muted">
           <p style={{ fontSize: '2rem' }}>📭</p>
           <p>No books added yet. <Link to="/books" className="text-success">Add some!</Link></p>
